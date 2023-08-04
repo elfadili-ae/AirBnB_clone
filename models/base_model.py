@@ -3,7 +3,6 @@
 """
 import json
 import uuid
-import time
 from datetime import datetime
 
 class BaseModel:
@@ -12,10 +11,12 @@ class BaseModel:
     def __init__(self):
         """Initialize the model"""
         self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = self.created_at
 
     def save(self):
         """update update_at datetime"""
-        pass
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """keys/values of __doc__ in the instance
