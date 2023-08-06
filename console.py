@@ -5,9 +5,6 @@ import cmd
 
 class HBNBCommand(cmd.Cmd):
 
-    def do_help(self, arg):
-        """help command"""
-        pass
 
     def do_EOF(self, line):
         """handle the EOF"""
