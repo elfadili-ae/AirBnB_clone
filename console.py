@@ -4,19 +4,25 @@ import cmd
 
 
 class HBNBCommand(cmd.Cmd):
+    prompt = "(hbnb) "
 
-    def do_help(self, arg):
-        """help command"""
-        pass
+
+    # def do_help(self, arg):
+    #     """help command"""
+    #     pass
 
     def do_EOF(self, line):
-        """handle the EOF"""
+        """EOF command to EOF the program"""
+        print("")
         return True
 
     def do_quit(self, arg):
-        """quit the cmd"""
+        """Quit command to exit the program"""
+        print("")
         return True
 
-
+    def emptyline(self):
+        """ overwriting the emptyline method """
+        pass
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
