@@ -2,6 +2,10 @@
 """User's Module"""
 from models.base_model import BaseModel
 
+
 class User(BaseModel):
     """User class"""
-    pass
+    password = ""
+    email = ""
+    first_name = ""
+    last_name = ""
