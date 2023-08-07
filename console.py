@@ -5,6 +5,7 @@ from models import storage
 import re
 from shlex import split
 from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -98,9 +99,18 @@ class HBNBCommand(cmd.Cmd):
         argl = parsing(arg)
         objdict = storage.all()
         if len(argl) == 0:
-                print("print array of instances")
+            res = []
+            for key in objdict:
+                res.append(str(objdict[key]))
+            print(res)
         elif argl[0] and argl[0] in HBNBCommand.__classes:
-            print("only ", argl[0], " elements")
+            res = []
+            for key in objdict:
+                classLen = len(argl[0]) + 2
+                if str(objdict[key])[:classLen] == "[{}]".format(argl[0]):
+                    res.append(str(objdict[key]))
+            print(res)
+
 
 def parsing(arg):
     brace = re.search(r"\{(.*?)\}", arg)
