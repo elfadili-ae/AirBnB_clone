@@ -24,8 +24,9 @@ class HBNBCommand(cmd.Cmd):
         "Amenity",
         "Review"
     }
+
     def default(self, arg):
-        """Default behavior for cmd module when input is invalid"""
+        """cmd module when input invalid"""
         argdict = {
             "all": self.do_all,
             "show": self.do_show,
@@ -44,14 +45,19 @@ class HBNBCommand(cmd.Cmd):
                     return argdict[command[0]](call)
         print("*** Unknown command: {}".format(arg))
         return False
+
     def do_count(self, arg):
-        """Retrieve the number of instances of a class."""
+        """ count : Return the number of count.
+        Usage: <class name>.count().
+        Example: User.count().
+        """
         argl = parsing(arg)
         count = 0
         for obj in storage.all().values():
             if argl[0] == obj.__class__.__name__:
                 count += 1
         print(count)
+
     def do_EOF(self, line):
         """EOF command to EOF the program"""
         print("")
