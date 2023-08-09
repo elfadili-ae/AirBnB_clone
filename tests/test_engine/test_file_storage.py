@@ -38,8 +38,8 @@ class StorageTest(unittest.TestCase):
         self.assertEqual(str, type(FileStorage._FileStorage__file_path))
 
     def test_models_storage_initialized(self):
-       """check if storage is initialized"""
-       self.assertEqual(type(models.storage), FileStorage)
+        """check if storage is initialized"""
+        self.assertEqual(type(models.storage), FileStorage)
 
     def test_all_with_arg(self):
         """check all() with an argument"""
@@ -74,7 +74,8 @@ class StorageTest(unittest.TestCase):
         _state = State()
         _user = User()
 
-        self.assertIn("BaseModel." + _basemodel.id, models.storage.all().keys())
+        self.assertIn("BaseModel."
+                      + _basemodel.id, models.storage.all().keys())
         self.assertIn("Amenity." + _amenity.id, models.storage.all().keys())
         self.assertIn("City." + _city.id, models.storage.all().keys())
         self.assertIn("Place." + _place.id, models.storage.all().keys())
@@ -129,7 +130,6 @@ class StorageTest(unittest.TestCase):
         self.assertIn("Place." + _place.id, file_content)
         self.assertIn("Review." + _review.id, file_content)
         self.assertIn("User." + _user.id, file_content)
-
 
     def test_FileStorage_reload_with_arg(self):
         """check reload() with an argument"""

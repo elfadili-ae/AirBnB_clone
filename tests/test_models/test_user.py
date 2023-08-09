@@ -9,6 +9,7 @@ from datetime import datetime
 from models.base_model import BaseModel
 from models.user import User
 
+
 class UserTest(unittest.TestCase):
     """User test cases"""
     def test_User_inherits_baseModel(self):
@@ -76,6 +77,7 @@ class UserTest(unittest.TestCase):
         with self.assertRaises(TypeError):
             User(id=None, created_at=None, updated_at=None)
 
+
 class UserSaveTest(unittest.TestCase):
     """test cases for Uer.save() method"""
     @classmethod
@@ -88,12 +90,12 @@ class UserSaveTest(unittest.TestCase):
     @classmethod
     def tearDown(self):
         try:
-            os.remove("ufile.json")
+            os.remove("file.json")
         except IOError:
             pass
         try:
             os.rename("_file.json", "file.json")
-        except:
+        except IOError:
             pass
 
     def test_User_save_none_arg(self):
@@ -137,6 +139,7 @@ class UserSaveTest(unittest.TestCase):
             self.assertIn(val1, file.read())
         with open("file.json", "r") as file:
             self.assertIn(val2, file.read())
+
 
 class UserToDictTest(unittest.TestCase):
     """test to_dict()"""
