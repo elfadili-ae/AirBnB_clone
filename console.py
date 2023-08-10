@@ -47,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_count(self, arg):
-        """ count : Return the number of count.
+        """Return the number of count.
         Usage: <class name>.count().
         Example: User.count().
         """
@@ -155,7 +155,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Updates an instance based on the class name
         and id by adding or updating attribute
-        Usage: update <class name> <id> <attribute name> "<attribute value>"
+        Usage: update <class name> <id> <attribute name> '<attribute value>'
         """
         argl = parsing(arg)
         objdict = storage.all()
