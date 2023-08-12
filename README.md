@@ -1,94 +1,70 @@
 # AirBnB clone
 ![ Airbnb_Logo.png]( Airbnb_Logo.png)
-## First step: Write a command interpreter to manage your AirBnB objects.
-This is the first step towards building your first full web application: the AirBnB clone. This first step is very important because you will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration…
 
-Each task is linked and will help you to:
+The Airbnb Console is a command-line interface (CLI) tool that simplifies the testing of various CRUD (Create, Read, Update, Delete) functionalities. With intuitive commands, you can efficiently interact with your data models and perform essential operations.
 
-put in place a parent class (called BaseModel) to take care of the initialization, serialization and deserialization of your future instances
-create a simple flow of serialization/deserialization: Instance <-> Dictionary <-> JSON string <-> file
-create all classes used for AirBnB (User, State, City, Place…) that inherit from BaseModel
-create the first abstracted storage engine of the project: File storage.
-create all unittests to validate all our classes and storage engine
-## What’s a command interpreter?
-Do you remember the Shell? It’s exactly the same but limited to a specific use-case. In our case, we want to be able to manage the objects of our project:
-
-Create a new object (ex: a new User or a new Place)
-Retrieve an object from a file, a database etc…
-Do operations on objects (count, compute stats, etc…)
-Update attributes of an object
-Destroy an object
-## Resources
-Read or watch:
-
-cmd module
-cmd module in depth
-packages concept page
-uuid module
-datetime
-unittest module
-args/kwargs
-Python test cheatsheet
-cmd module wiki page
-python unittest
-
-## General
-How to create a Python package
-How to create a command interpreter in Python using the cmd module
-What is Unit testing and how to implement it in a large project
-How to serialize and deserialize a Class
-How to write and read a JSON file
-How to manage datetime
-What is an UUID
-What is *args and how to use it
-What is **kwargs and how to use it
-How to handle named arguments in a function
-## Requirements
-### Python Scripts
-Allowed editors: vi, vim, emacs
-All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)
-All your files should end with a new line
-The first line of all your files should be exactly #!/usr/bin/python3
-A README.md file, at the root of the folder of the project, is mandatory
-Your code should use the pycodestyle (version 2.8.*)
-All your files must be executable
-The length of your files will be tested using wc
-All your modules should have a documentation (python3 -c 'print(__import__("my_module").__doc__)')
-All your classes should have a documentation (python3 -c 'print(__import__("my_module").MyClass.__doc__)')
-All your functions (inside and outside a class) should have a documentation (python3 -c 'print(__import__("my_module").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)')
-A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
-### Python Unit Tests
-Allowed editors: vi, vim, emacs
-All your files should end with a new line
-All your test files should be inside a folder tests
-You have to use the unittest module
-All your test files should be python files (extension: .py)
-All your test files and folders should start by test_
-Your file organization in the tests folder should be the same as your project
-e.g., For models/base_model.py, unit tests must be in: tests/test_models/test_base_model.py
-e.g., For models/user.py, unit tests must be in: tests/test_models/test_user.py
-All your tests should be executed by using this command: python3 -m unittest discover tests
-You can also test file by file by using this command: python3 -m unittest tests/test_models/test_base_model.py
-All your modules should have a documentation (python3 -c 'print(__import__("my_module").__doc__)')
-All your classes should have a documentation (python3 -c 'print(__import__("my_module").MyClass.__doc__)')
-All your functions (inside and outside a class) should have a documentation (python3 -c 'print(__import__("my_module").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)')
-We strongly encourage you to work together on test cases, so that you don’t miss any edge case
-
-## Getting Started
-
-To start the console, run the following command:
-
-```
-./console.py
-
-```
-## Compilation
+## How To start the console
+To start the console, run the follow these steps:
 **To start up the interpreter, clone this repository, and run the console file on linux as follows:**
 - Clone this repository: ```git clone "https://github.com/elfadili-ae/AirBnB_clone"```
 - Access AirBnb directory: ```cd AirBnB_clone```
 - Run hbnb(interactively): ```./console``` and then press enter command
 - Run hbnb(non-interactively): ```echo "<command>" | ./console.py```
+```
+./console.py
+```
+## How to use the console
+Below is a detailed breakdown of each command and its usage:
 
+### **all**: View All Instances
+
+Description: Prints the string representation of all instances of a given class or all classes.
+
+Usage: ``` all or all <class_name>```
+
+### **count**: Count Instances
+
+Description: Count the number of instances for a specified class.
+
+Usage: ```<class_name>.count()```
+
+### **create**: Create a New Instance
+
+Description: Creates a new instance of the BaseModel class and saves it to the JSON file.
+
+Usage: ```create <class_name>```
+
+### **destroy**: Delete an Instance
+
+Description: Deletes an instance based on the class name and ID, saving the change to the JSON file.
+
+Usage: ```destroy <class_name> <id>```
+
+### **help**: Get Command Help
+
+Description: List available commands or display detailed help for a specific command.
+
+Usage: ```help <command_name>```
+
+### **quit**: Exit the Console
+
+Description: Quit and exit the Airbnb Console.
+
+Usage: ```quit```
+
+### **show**: Show Instance Details
+
+Description: Prints the string representation of an instance based on the class name and ID.
+
+Usage: ```show <class_name> <id>```
+
+### **update**: Update Instance Attributes
+
+Description: Update an instance's attributes by adding or modifying specific attributes.
+
+Usage: ```update <class_name> <id> <attribute_name> '<attribute_value>'```
+
+## examples
 ```
 $ ./console.py
 (hbnb) help
@@ -121,6 +97,16 @@ Documented commands (type help <topic>):
 EOF  help  quit
 (hbnb)
 $
+```
+
+Here is an example of cerating an a BaseModel instance and deleting it
+
+```
+(hbnb) create BaseModel
+ff251868-a146-4269-a651-12951a524b59
+(hbnb)
+(hbnb) destroy BaseModel ff251868-a146-4269-a651-12951a524b59
+(hbnb)
 ```
 
 # Authors
