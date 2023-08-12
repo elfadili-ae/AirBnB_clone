@@ -18,7 +18,13 @@ class HBNBCommand(cmd.Cmd):
     """The console class."""
 
     prompt = "(hbnb) "
-    __classes = {"BaseModel", "User", "State", "City", "Place", "Amenity", "Review"}
+    __classes = {"BaseModel",
+                 "User",
+                 "State",
+                 "City",
+                 "Place",
+                 "Amenity",
+                 "Review"}
 
     def default(self, arg):
         """Handle invalid input."""
@@ -31,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
         }
         match = re.search(r"\.", arg)
         if match is not None:
-            argl = [arg[: match.span()[0]], arg[match.span()[1] :]]
+            argl = [arg[: match.span()[0]], arg[match.span()[1]:]]
             match = re.search(r"\((.*?)\)", argl[1])
             if match is not None:
                 command = [argl[1][: match.span()[0]], match.group()[1:-1]]
@@ -130,7 +136,6 @@ class HBNBCommand(cmd.Cmd):
         Print string representation of all instances.
 
         If a class name is provided, will print only instances of that class.
-        instances based or not on the class name
         Usage: all
         or   : all <class_name>
         """
