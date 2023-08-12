@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-""" BaseModel's Module
-"""
+"""BaseModel's Module."""
 import json
 import uuid
 import models
@@ -8,10 +7,10 @@ from datetime import datetime
 
 
 class BaseModel:
-    """BaseModel class"""
+    """BaseModel class."""
 
     def __init__(self, *args, **kwargs):
-        """initialize the model
+        """Initialize the model.
 
         Args:
             *args: not used
@@ -33,7 +32,7 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
-        """representation of the model
+        """Representation of the model.
 
         Returns:
             representation
@@ -42,12 +41,12 @@ class BaseModel:
         return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
 
     def save(self):
-        """update updated_at attribute"""
+        """Update updated_at attribute."""
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
-        """keys/values of __dict__
+        """Keys/values of __dict__.
 
         Returns:
             Keys/valeus dictionary

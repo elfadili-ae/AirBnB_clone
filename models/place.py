@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" class place """
+"""Class place."""
 from models.base_model import BaseModel
 
 

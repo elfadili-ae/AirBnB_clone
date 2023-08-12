@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Console's Module"""
+"""Console's Module."""
+
 import cmd
 from models import storage
 import re
@@ -14,32 +15,26 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
+    """The console class."""
+
     prompt = "(hbnb) "
-    __classes = {
-        "BaseModel",
-        "User",
-        "State",
-        "City",
-        "Place",
-        "Amenity",
-        "Review"
-    }
+    __classes = {"BaseModel", "User", "State", "City", "Place", "Amenity", "Review"}
 
     def default(self, arg):
-        """cmd module when input invalid"""
+        """Handle invalid input."""
         argdict = {
             "all": self.do_all,
             "show": self.do_show,
             "destroy": self.do_destroy,
             "count": self.do_count,
-            "update": self.do_update
+            "update": self.do_update,
         }
         match = re.search(r"\.", arg)
         if match is not None:
-            argl = [arg[:match.span()[0]], arg[match.span()[1]:]]
+            argl = [arg[: match.span()[0]], arg[match.span()[1] :]]
             match = re.search(r"\((.*?)\)", argl[1])
             if match is not None:
-                command = [argl[1][:match.span()[0]], match.group()[1:-1]]
+                command = [argl[1][: match.span()[0]], match.group()[1:-1]]
                 if command[0] in argdict.keys():
                     call = "{} {}".format(argl[0], command[1])
                     return argdict[command[0]](call)
@@ -48,6 +43,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_count(self, arg):
         """Return the number of count.
+
         Usage: <class name>.count().
         Example: User.count().
         """
@@ -59,21 +55,22 @@ class HBNBCommand(cmd.Cmd):
         print(count)
 
     def do_EOF(self, line):
-        """EOF command to EOF the program"""
+        """EOF command to EOF the program."""
         print("")
         return True
 
     def do_quit(self, arg):
-        """Quit command to exit the program"""
+        """Quit command to exit the program."""
         print("")
         return True
 
     def emptyline(self):
-        """ overwriting the emptyline method """
+        """Emptyline method."""
         pass
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, saves it (to the JSON file)
+        """Create a new instance of BaseModel, saves it (to the JSON file).
+
         Usage: create <class_name>
         Example: create Basemodel
         """
@@ -88,7 +85,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """
-        Prints the string representation of an instance based on the class name
+        Print the string representation of an instance based on the class name.
+
         Usage: show <class_name> <id>
         Example: show BaseModel 1234-1234-1234
         """
@@ -107,8 +105,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         """
-        Deletes an instance based on the class name
-        and id (save the change into the JSON file)
+        Delete an instance based on the class name and id.
+
         Usage: destroy <class_name> <id>
         Example: destroy BaseModel 1234-1234-1234
         """
@@ -129,7 +127,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """
-        Prints all string representation of all
+        Print string representation of all instances.
+
+        If a class name is provided, will print only instances of that class.
         instances based or not on the class name
         Usage: all
         or   : all <class_name>
@@ -153,8 +153,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """
-        Updates an instance based on the class name
-        and id by adding or updating attribute
+        Update an instance based on its class name and id.
+
         Usage: update <class name> <id> <attribute name> '<attribute value>'
         """
         argl = parsing(arg)
@@ -192,8 +192,9 @@ class HBNBCommand(cmd.Cmd):
         elif type(eval(argl[2])) == dict:
             obj = objdict["{}.{}".format(argl[0], argl[1])]
             for k, v in eval(argl[2]).items():
-                if (k in obj.__class__.__dict__.keys() and
-                        type(obj.__class__.__dict__[k]) in {str, int, float}):
+                if k in obj.__class__.__dict__.keys() and type(
+                    obj.__class__.__dict__[k]
+                ) in {str, int, float}:
                     valtype = type(obj.__class__.__dict__[k])
                     obj.__dict__[k] = valtype(v)
                 else:
@@ -202,22 +203,23 @@ class HBNBCommand(cmd.Cmd):
 
 
 def parsing(arg):
+    """Parse argument."""
     brace = re.search(r"\{(.*?)\}", arg)
     bracket = re.search(r"\[(.*?)\]", arg)
     if brace is None:
         if bracket is None:
             return [i.strip(",") for i in split(arg)]
         else:
-            lxr = split(arg[:bracket.span()[0]])
+            lxr = split(arg[: bracket.span()[0]])
             ret = [i.strip(",") for i in lxr]
             ret.append(bracket.group())
             return ret
     else:
-        lxr = split(arg[:brace.span()[0]])
+        lxr = split(arg[: brace.span()[0]])
         ret = [i.strip(",") for i in lxr]
         ret.append(brace.group())
         return ret
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HBNBCommand().cmdloop()

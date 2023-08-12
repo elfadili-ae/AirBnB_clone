@@ -1,10 +1,12 @@
 #!/usr/bin/python3
-"""User's Module"""
+"""User's Module."""
+
 from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """User class"""
+    """User class."""
+
     password = ""
     email = ""
     first_name = ""
