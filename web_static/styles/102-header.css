@@ -9,3 +9,9 @@ header {
   border-bottom: 1px solid #cccccc;
   background-position-x: 20px;
 }
+
+@media (max-width: 1024px) {
+  header {
+    height: 55px;
+  }
+}
